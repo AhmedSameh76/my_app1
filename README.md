@@ -1,4 +1,4 @@
-#  :collision:  my_app1
+#  :collision:  My_app1
 
 A new Flutter project.
 
