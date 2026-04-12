@@ -6,11 +6,15 @@ import 'package:my_app1/features/onBoarding/onboarding_screen.dart';
 
 class AppRouters {
   static final router = GoRouter(
-  initialLocation: Routes.onboarding ,
+  initialLocation: Routes.onboarding,
     routes: [
       GoRoute(
+      path: Routes.onboarding,
+      builder: (context, state) => const OnboardingScreen(),
+        ),
+      GoRoute(
           path:Routes.login,
-          builder: (context , state)=> LoginScreen(),
+          builder: (context , state)=> const  LoginScreen(),
       ),
     ]
   );
