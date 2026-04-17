@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:my_app1/core/Routing/routes.dart';
 import 'package:my_app1/features/login/presentation/login_screen.dart';
 import 'package:my_app1/features/onBoarding/onboarding_screen.dart';
+import 'package:my_app1/features/sign_up/ui/sign_up.dart';
 
 class AppRouters {
   static final router = GoRouter(
@@ -15,6 +16,10 @@ class AppRouters {
       GoRoute(
           path:Routes.login,
           builder: (context , state)=> const  LoginScreen(),
+      ),
+      GoRoute(
+        path:Routes.signup,
+        builder: (context , state)=> const  SignUp(),
       ),
     ]
   );

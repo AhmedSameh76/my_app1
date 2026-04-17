@@ -25,7 +25,7 @@ class GetStartBottom extends StatelessWidget {
         ),
         child: Text(
           "Get Started",
-          style: TextStyles.font16White600,
+          style: TextStyles.font16WhiteSemiBold,
         ),
       ),
     );
