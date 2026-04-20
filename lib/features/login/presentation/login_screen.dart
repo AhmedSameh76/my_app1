@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
           child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text("Welcome Back", style: TextStyles.font24BlueBold),
                 verticalSpace(8),
