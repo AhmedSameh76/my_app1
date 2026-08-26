@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:my_app1/core/networking/api_service.dart';
 import 'package:my_app1/core/networking/dio_factory.dart';
+import 'package:my_app1/core/widgets/push_notification_service.dart';
 import 'package:my_app1/features/appoinments/data/apis/appointment_service.dart';
 import 'package:my_app1/features/appoinments/data/repo/appointment_repo_.dart';
 import 'package:my_app1/features/appoinments/presentation/cubit/appoinments_cubit.dart';
@@ -69,4 +70,6 @@ Future<void> setupGetIt() async {
 getIt.registerLazySingleton<ProfileApiService>(() => ProfileApiService(dio));
 getIt.registerLazySingleton<ProfileRepo>(() => ProfileRepo(getIt()));
 getIt.registerFactory<ProfileCubit>(() => ProfileCubit(getIt()));
+
+getIt.registerLazySingleton<PushNotificationService>(() => PushNotificationService());
 }

@@ -16,6 +16,8 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        // 👈 السطر ده اللي بيفعل الـ Desugaring
+        isCoreLibraryDesugaringEnabled = true 
     }
 
     kotlinOptions {
@@ -33,20 +35,20 @@ android {
         versionName = flutter.versionName
     }
     
-  flavorDimensions += "default"
+    flavorDimensions += "default"
 
-productFlavors {
-    create("production") {
-        dimension = "default"
-        resValue("string", "app_name", "DocDoc Production")
-    }
+    productFlavors {
+        create("production") {
+            dimension = "default"
+            resValue("string", "app_name", "DocDoc Production")
+        }
 
-    create("development") {
-        dimension = "default"
-        applicationIdSuffix = ".dev"
-        resValue("string", "app_name", "DocDoc Development")
+        create("development") {
+            dimension = "default"
+            applicationIdSuffix = ".dev"
+            resValue("string", "app_name", "DocDoc Development")
+        }
     }
-}
 
 
     buildTypes {
@@ -60,4 +62,9 @@ productFlavors {
 
 flutter {
     source = "../.."
+}
+
+// 👈 البلوك ده بيحمل المكتبة الخاصة بالـ Desugaring (ضيفه في آخر الملف خالص)
+dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }
