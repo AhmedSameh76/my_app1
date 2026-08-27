@@ -15,7 +15,6 @@ class _AppointmentsScreenState extends State<Appoinmentt> {
   @override
   void initState() {
     super.initState();
-    // استدعاء الداتا أول ما الشاشة تفتح
     context.read<AppoinmentsCubit>().getAppointment(date: '');
   }
 
@@ -29,22 +28,19 @@ class _AppointmentsScreenState extends State<Appoinmentt> {
       body: BlocBuilder<AppoinmentsCubit, AppoinmentsState>(
         builder: (context, state) {
           return state.maybeWhen(
-            // 1. حالة التحميل
             appointmentloading: () {
               return const Center(child: CircularProgressIndicator());
             },
 
-            // 2. حالة الفشل
             appointmentFailuer: (apiErrorModel) {
               return Center(
                 child: Text(
-                  apiErrorModel.message ?? "حدث خطأ غير متوقع",
+                  apiErrorModel.message ?? "error",
                   style: TextStyle(fontSize: 16.sp, color: Colors.red),
                 ),
               );
             },
 
-            // 3. حالة النجاح 
             appointmentSuccess: (appoinmentsModel) {
               final appointmentsList = appoinmentsModel.data ?? [];
 
@@ -61,7 +57,6 @@ class _AppointmentsScreenState extends State<Appoinmentt> {
                 padding: EdgeInsets.all(16.w),
                 itemCount: appointmentsList.length,
                 itemBuilder: (context, index) {
-                  // المتغير ده دلوقتي من نوع AppointmentData
                   final appointment = appointmentsList[index];
 
                   return Card(
@@ -73,7 +68,6 @@ class _AppointmentsScreenState extends State<Appoinmentt> {
                     child: ListTile(
                       contentPadding: EdgeInsets.all(16.w),
                       title: Text(
-                        // بما إن الموديل مفيهوش اسم دكتور، هنعرض رقم الحجز مؤقتاً
                         'Appointment #${appointment.id ?? 'Unknown'}',
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.sp),
                       ),
@@ -81,16 +75,13 @@ class _AppointmentsScreenState extends State<Appoinmentt> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: 8.h),
-                          // استخدام startTime بناءً على الموديل بتاعك
                           Text('Start Time: ${appointment.startTime ?? 'N/A'}'),
                           
-                          // لو فيه وقت نهاية هنعرضه
                           if (appointment.endTime != null)
                             Text('End Time: ${appointment.endTime}'),
                             
                           SizedBox(height: 4.h),
                           
-                          // عرض حالة الحجز بلون مميز
                           Text(
                             appointment.isBooked == true ? 'Status: Booked' : 'Status: Available',
                             style: TextStyle(
@@ -107,7 +98,6 @@ class _AppointmentsScreenState extends State<Appoinmentt> {
               );
             },
 
-            // أي حالة تانية
             orElse: () {
               return const SizedBox.shrink();
             },
